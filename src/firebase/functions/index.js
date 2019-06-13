@@ -24,6 +24,7 @@ const database = firebaseApp.database();
 const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+app.use(express.static(path.join(__dirname, '/public')));
 
 // General
 app.get('/', site.index);
