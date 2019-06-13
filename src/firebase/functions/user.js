@@ -1,3 +1,7 @@
+const admin = require('firebase-admin');
+const index = require('./index');
+const database = index.getdb();
+
 // Fake user database
 var users = [
   { name: 'TJ', email: 'tj@vision-media.ca' },
@@ -5,6 +9,16 @@ var users = [
 ];
 
 exports.list = function(req, res) {
+  database.collection('users').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      console.log(doc.id, '=>', doc.data());
+    });
+    return null;
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
+  });
   res.render('users', { title: 'Users', users: users });
 };
 

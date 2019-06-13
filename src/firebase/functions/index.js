@@ -1,30 +1,42 @@
 const functions = require('firebase-functions');
 const firebase = require("firebase");
-const firebaseAdmin = require('firebase-admin');
+const admin = require('firebase-admin');
 
 const express = require('express');
 const exphbs = require('express-handlebars');
 const engines = require('consolidate');
 const path = require('path');
 
+// Firebase config
+admin.initializeApp(functions.config().firebase);
+const database = admin.firestore();
+exports.getdb = function() {
+  return database;
+};
+
 const site = require('./site');
 const user = require('./user');
 const idea = require('./idea');
-
-// Firebase config
-const firebaseApp = firebaseAdmin.initializeApp(
-  functions.config().firebase
-);
-const database = firebaseApp.database();
-
-// Initialize the FirebaseUI Widget using Firebase.
-//const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 // Express config
 const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, '/public')));
+
+app.get('/posts', (req, res) => {
+  database.collection('posts').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      console.log(doc.id, '=>', doc.data());
+    });
+    return null;
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
+  });
+  res.send('Hello!');
+});
 
 // General
 app.get('/', site.index);
