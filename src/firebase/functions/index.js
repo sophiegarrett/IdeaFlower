@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
-const firebase = require('firebase-admin');
-const firebaseui = require('firebaseui');
+const firebase = require("firebase");
+const firebaseAdmin = require('firebase-admin');
+
 const express = require('express');
 const exphbs = require('express-handlebars');
 const engines = require('consolidate');
@@ -11,13 +12,13 @@ const user = require('./user');
 const idea = require('./idea');
 
 // Firebase config
-const firebaseApp = firebase.initializeApp(
+const firebaseApp = firebaseAdmin.initializeApp(
   functions.config().firebase
 );
 const database = firebaseApp.database();
 
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+//const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 // Express config
 const app = express();
