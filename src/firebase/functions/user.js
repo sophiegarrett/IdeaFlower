@@ -2,43 +2,38 @@ const admin = require('firebase-admin');
 const index = require('./index');
 const database = index.getdb();
 
-// Fake user database
-var users = [
-  { name: 'TJ', email: 'tj@vision-media.ca' },
-  { name: 'Tobi', email: 'tobi@vision-media.ca' }
-];
-
 exports.list = function(req, res) {
+  var users = [];
   database.collection('users').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
-      console.log(doc.id, '=>', doc.data());
+      var user = {id: doc.id, name: doc.data().name};
+      users.push(user);
     });
+    res.render('users', { title: 'Users', users: users });
     return null;
   })
   .catch((err) => {
     console.log('Error getting documents', err);
   });
-  res.render('users', { title: 'Users', users: users });
-};
-
-exports.load = function(req, res, next){
-  var id = req.params.id;
-  req.user = users[id];
-  if (req.user) {
-    return next();
-  } else {
-    var err = new Error('cannot find user ' + id);
-    err.status = 404;
-    return next(err);
-  }
 };
 
 exports.view = function(req, res) {
-  res.render('users/view', {
-    title: 'Viewing user ' + req.user.name,
-    user: req.user
-  });
+  var id = req.params.id;
+  var userdoc = database.collection('users').doc(id).get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('Cannot find user ' + id);
+        res.render('404', { title: 'Page Not Found' });
+      } else {
+        var user = {id: doc.id, name: doc.data().name};
+        res.render('users/view', { title: 'Viewing user ' + user.name, user: user });
+      }
+      return null;
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
 };
 
 exports.update = function(req, res){
