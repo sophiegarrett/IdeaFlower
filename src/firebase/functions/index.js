@@ -24,12 +24,8 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'express', '/login.html'));
-});
-
 app.use ((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, 'express', '/404.html'));
+  res.status(404).sendFile(path.join(__dirname, '/static', '/404.html'));
 });
 
 exports.app = functions.https.onRequest(app);
