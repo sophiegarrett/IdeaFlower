@@ -28,6 +28,8 @@ app.get('/', site.index);
 
 // User
 app.get('/users', user.list);
+app.all('/user/:id/:op?', user.load);
+app.get('/user/:id', user.view);
 
 // 404
 app.get('*', site.error404);
