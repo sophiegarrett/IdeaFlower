@@ -22,3 +22,18 @@ h1
   color: #000000;
   background-color: #ffffff;
 }
+
+body {
+   font-family: sans-serif;
+   text-align: center;
+}
+
+#bongs {
+   display: block;
+   margin-top: 10px;
+   font-weight: bold;
+}
+
+button {
+   cursor: pointer;
+}
