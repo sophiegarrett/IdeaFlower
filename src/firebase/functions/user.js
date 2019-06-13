@@ -4,6 +4,6 @@ var users = [
   { name: 'Tobi', email: 'tobi@vision-media.ca' }
 ];
 
-/* exports.list = function(req, res){
+exports.list = function(req, res){
   res.render('users', { title: 'Users', users: users });
-}; */
+};

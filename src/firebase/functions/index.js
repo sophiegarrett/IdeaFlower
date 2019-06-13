@@ -27,10 +27,9 @@ app.set('view engine', 'handlebars');
 app.get('/', site.index);
 
 // User
-// app.get('/users', user.list);
+app.get('/users', user.list);
 
-app.use ((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, '/static', '/404.html'));
-});
+// 404
+app.get('*', site.error404);
 
 exports.app = functions.https.onRequest(app);
