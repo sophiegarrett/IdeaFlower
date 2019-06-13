@@ -1,11 +1,12 @@
 const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
+const exphbs = require('express-handlebars');
 const engines = require('consolidate');
 const path = require('path');
 
 const site = require('./site');
-// const user = require('./user');
+const user = require('./user');
 
 // Firebase config
 const firebaseApp = firebase.initializeApp(
@@ -19,12 +20,14 @@ function getFacts() {
 
 // Express config
 const app = express();
-app.engine('hbs', engines.handlebars);
-app.set('views', './views');
-app.set('view engine', 'hbs');
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 // General
 app.get('/', site.index);
+
+// User
+// app.get('/users', user.list);
 
 app.use ((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, '/static', '/404.html'));
