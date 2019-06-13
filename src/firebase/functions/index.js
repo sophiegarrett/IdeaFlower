@@ -28,6 +28,8 @@ app.set('view engine', 'handlebars');
 // General
 app.get('/', site.index);
 app.get('/login', site.login);
+app.get('/tos', site.tos);
+app.get('/privacy', site.privacy);
 
 // User
 app.get('/users', user.list);
