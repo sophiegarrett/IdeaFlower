@@ -1,5 +1,7 @@
-h1 {
+body {
   font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
   font-size: 40px;
   text-align: center;
   text-decoration: underline;
@@ -7,14 +9,12 @@ h1 {
   background-color: #ffffff;
 }
 h2 {
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   text-align: center;
   color: #000000;
   background-color: #ffffff;
 }
 p {
-  font-family: Arial, Helvetica, sans-serif;
   font-size: large;
   text-align: left;
   color: #000000;
@@ -40,4 +40,11 @@ p.centered {
 }
 .topnav a.active {
   background-color: #4CAF50;
+}
+div#nav_links {
+  float: left;
+  width: 70%;
+}
+div#nav_userinfo {
+  float: right;
 }
