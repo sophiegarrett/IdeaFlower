@@ -7,6 +7,7 @@ const path = require('path');
 
 const site = require('./site');
 const user = require('./user');
+const idea = require('./idea');
 
 // Firebase config
 const firebaseApp = firebase.initializeApp(
@@ -30,6 +31,11 @@ app.get('/', site.index);
 app.get('/users', user.list);
 app.all('/user/:id/:op?', user.load);
 app.get('/user/:id', user.view);
+
+// Idea
+app.get('/ideas', idea.list);
+app.all('/idea/:id/:op?', idea.load);
+app.get('/idea/:id', idea.view);
 
 // 404
 app.get('*', site.error404);
