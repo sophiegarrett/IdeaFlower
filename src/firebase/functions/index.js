@@ -1,19 +1,32 @@
 const functions = require('firebase-functions');
-
+const firebase = require('firebase-admin');
 const express = require('express');
-const app = express();
+const engines = require('consolidate');
 const path = require('path');
-const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'express', '/index.html'));
+const firebaseApp = firebase.initializeApp(
+  functions.config().firebase
+);
+
+function getFacts() {
+  const ref = firebaseApp.database().ref('facts');
+  return ref.once('value').then(snap => snap.val());
+}
+
+const app = express();
+app.engine('hbs', engines.handlebars);
+app.set('views', './views');
+app.set('view engine', 'hbs');
+
+app.get('/', (req, res) => {
+  return getFacts().then(facts => {
+     return res.render('index', { facts });
+  });
 });
 
-router.get('/login', (req, res) => {
+app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'express', '/login.html'));
 });
-
-app.use('/', router);
 
 app.use ((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, 'express', '/404.html'));
