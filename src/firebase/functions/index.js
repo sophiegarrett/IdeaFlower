@@ -13,11 +13,7 @@ const idea = require('./idea');
 const firebaseApp = firebase.initializeApp(
   functions.config().firebase
 );
-
-function getFacts() {
-  const ref = firebaseApp.database().ref('facts');
-  return ref.once('value').then(snap => snap.val());
-}
+const database = firebaseApp.database();
 
 // Express config
 const app = express();
