@@ -50,7 +50,6 @@ app.get('/user/:id', user.view);
 
 // Idea
 app.get('/ideas', idea.list);
-app.all('/idea/:id/:op?', idea.load);
 app.get('/idea/:id', idea.view);
 
 // 404

@@ -1,30 +1,39 @@
-// Fake idea database
-var ideas = [
-  { title: 'A Bright Idea', user: 'TJ' },
-  { title: 'Underwater Basket Weaving', user: 'Tobi' }
-];
+const admin = require('firebase-admin');
+const index = require('./index');
+const database = index.getdb();
 
 exports.list = function(req, res) {
-  res.render('ideas', { title: 'Ideas', ideas: ideas });
-};
-
-exports.load = function(req, res, next){
-  var id = req.params.id;
-  req.idea = ideas[id];
-  if (req.idea) {
-    return next();
-  } else {
-    var err = new Error('cannot find idea ' + id);
-    err.status = 404;
-    return next(err);
-  }
+  var ideas = [];
+  database.collection('ideas').get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      var idea = {id: doc.id, title: doc.data().title};
+      ideas.push(idea);
+    });
+    res.render('ideas', { title: 'Ideas', ideas: ideas });
+    return null;
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err);
+  });
 };
 
 exports.view = function(req, res) {
-  res.render('ideas/view', {
-    title: req.idea.title,
-    idea: req.idea
-  });
+  var id = req.params.id;
+  var ideadoc = database.collection('ideas').doc(id).get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log('Cannot find idea ' + id);
+        res.render('404', { title: 'Page Not Found' });
+      } else {
+        var idea = {id: doc.id, title: doc.data().title, description: doc.data().description};
+        res.render('ideas/view', { title: idea.title, idea: idea });
+      }
+      return null;
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
 };
 
 exports.update = function(req, res){
