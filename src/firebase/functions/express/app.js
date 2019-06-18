@@ -42,7 +42,6 @@ app.get('/tos', site.tos);
 app.get('/privacy', site.privacy);
 
 // User
-app.get('/users', user.list);
 app.get('/user/:id', user.view);
 
 // Idea

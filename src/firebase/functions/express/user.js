@@ -5,22 +5,6 @@ const {
   database,
 } = require('../admin');
 
-exports.list = function(req, res) {
-  var users = [];
-  database.collection('users').get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      var user = {id: doc.id, name: doc.data().name};
-      users.push(user);
-    });
-    res.render('users', { title: 'Users', users: users });
-    return null;
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err);
-  });
-};
-
 exports.view = function(req, res) {
   var id = req.params.id;
   admin.auth().getUser(id)
