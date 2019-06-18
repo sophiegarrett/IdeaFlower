@@ -22,9 +22,34 @@
 
 <script>
 
+// Function that runs when the form is submitted
 validate = function() {
   var new_displayName = document.getElementById("new_displayName").value;
-  alert("New name = " + new_displayName);
+  if (isEmpty(new_displayName)) {
+    alert("String is empty!");
+  }
+  else if (isInvalid(new_displayName)) {
+    alert("String contains invalid characters!");
+  }
+  else {
+    alert("New name = " + new_displayName);
+  }
+}
+
+// Function that checks if a field is empty.
+isEmpty = function(input) {
+  return !input || !input.trim();
+}
+
+// Function that checks if a display name contains invalid characters.
+isInvalid = function(input) {
+  var regexp = /^[a-zA-Z0-9-_]+$/;
+  if (input.search(regexp) == -1) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 // Display correct div and hide the loader
