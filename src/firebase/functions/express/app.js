@@ -2,7 +2,7 @@
 
 const {
   database,
-} = require('./admin');
+} = require('../admin');
 
 const express = require('express');
 const exphbs = require('express-handlebars');
@@ -16,6 +16,7 @@ const idea = require('./idea');
 // Express config
 const app = express();
 app.engine('handlebars', exphbs());
+app.set('views', './express/views');
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, '/public')));
 

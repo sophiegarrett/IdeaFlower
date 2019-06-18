@@ -1,18 +1,18 @@
-// idea.js
+// user.js
 
 const {
   database,
-} = require('./admin');
+} = require('../admin');
 
 exports.list = function(req, res) {
-  var ideas = [];
-  database.collection('ideas').get()
+  var users = [];
+  database.collection('users').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
-      var idea = {id: doc.id, title: doc.data().title};
-      ideas.push(idea);
+      var user = {id: doc.id, name: doc.data().name};
+      users.push(user);
     });
-    res.render('ideas', { title: 'Ideas', ideas: ideas });
+    res.render('users', { title: 'Users', users: users });
     return null;
   })
   .catch((err) => {
@@ -22,14 +22,14 @@ exports.list = function(req, res) {
 
 exports.view = function(req, res) {
   var id = req.params.id;
-  var ideadoc = database.collection('ideas').doc(id).get()
+  var userdoc = database.collection('users').doc(id).get()
     .then(doc => {
       if (!doc.exists) {
-        console.log('Cannot find idea ' + id);
+        console.log('Cannot find user ' + id);
         res.render('404', { title: 'Page Not Found' });
       } else {
-        var idea = {id: doc.id, title: doc.data().title, description: doc.data().description};
-        res.render('ideas/view', { title: idea.title, idea: idea });
+        var user = {id: doc.id, name: doc.data().name};
+        res.render('users/view', { title: 'Viewing user ' + user.name, user: user });
       }
       return null;
     })
@@ -41,8 +41,8 @@ exports.view = function(req, res) {
 exports.update = function(req, res){
   // Normally you would handle all kinds of
   // validation and save back to the db
-  var idea = req.body.idea;
-  req.idea.title = idea.title;
-  req.idea.user = idea.user;
+  var user = req.body.user;
+  req.user.name = user.name;
+  req.user.email = user.email;
   res.redirect('back');
 };
