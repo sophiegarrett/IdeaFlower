@@ -8,6 +8,10 @@ exports.login = function(req, res) {
   res.render('login', { title: 'Log In' });
 }
 
+exports.logout = function(req, res) {
+  res.render('logout', { title: 'Log Out' });
+}
+
 exports.tos = function(req, res) {
   res.render('tos', { title: 'Terms of Service' });
 }

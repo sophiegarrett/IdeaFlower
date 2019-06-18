@@ -37,6 +37,7 @@ app.get('/posts', (req, res) => {
 // General
 app.get('/', site.index);
 app.get('/login', site.login);
+app.get('/logout', site.logout);
 app.get('/tos', site.tos);
 app.get('/privacy', site.privacy);
 

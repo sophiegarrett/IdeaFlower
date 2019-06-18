@@ -1,0 +1,11 @@
+<h1>{{> page/title}}</h1>
+
+<p class="centered" id="logout">Logging out...</p>
+
+<script>
+  firebase.auth().signOut().then(function() {
+    document.getElementById("logout").innerHTML = "Successfully logged out.";
+  }).catch(function(error) {
+    // An error occurred.
+  });
+</script>
