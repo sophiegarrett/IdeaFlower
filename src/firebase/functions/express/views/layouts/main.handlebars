@@ -16,24 +16,6 @@
 
 <body>
   {{> page/nav}}
-  <!-- Login/logout button controls -->
-  <script>
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        document.getElementById("nav_login").href = "/logout";
-        document.getElementById("nav_login").innerHTML = "Log Out";
-        document.getElementById("nav_user").href = "user/" + user.uid;
-        document.getElementById("nav_user").innerHTML = "Welcome, " + user.displayName;
-        document.getElementById("user_dropbtn").innerHTML = "Welcome, " + user.displayName;
-      } else {
-        document.getElementById("nav_login").href = "/login";
-        document.getElementById("nav_login").innerHTML = "Log In";
-        document.getElementById("user_dropbtn").innerHTML = "Log In";
-      }
-    });
-  </script>
-
   {{{body}}}
-
 </body>
 </html>
