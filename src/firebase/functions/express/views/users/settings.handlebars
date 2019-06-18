@@ -24,8 +24,10 @@
 
 </div>
 
-<script>
+<!-- External settings functions -->
+<script src="/javascript/user_settings.js"></script>
 
+<script>
 // Function that runs when the form is submitted
 validate = function() {
   var new_displayName = document.getElementById("new_displayName").value;
@@ -50,35 +52,6 @@ validate = function() {
   document.getElementById('user_settings_submitted').style.display = 'block';
 }
 
-// Function that checks if a field is empty.
-isEmpty = function(input) {
-  return !input || !input.trim();
-}
-
-// Function that checks if a display name contains invalid characters.
-isInvalid = function(input) {
-  var regexp = /^[a-zA-Z0-9-_]+$/;
-  if (input.search(regexp) == -1) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-// Function that updates a user's profile information in Firebase.
-updateProfile = function(new_displayName) {
-  var user = firebase.auth().currentUser;
-
-  user.updateProfile({
-    displayName: new_displayName
-  }).then(function() {
-    // Update successful.
-  }).catch(function(error) {
-    // An error occurred.
-  });
-}
-
 // Display correct div and hide the loader
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -89,5 +62,4 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById('user_settings_error').style.display = 'block';
   }
 });
-
 </script>
