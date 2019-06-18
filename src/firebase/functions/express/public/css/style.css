@@ -28,7 +28,8 @@ p {
 div#user_settings_container {
   max-width: 500px;
   margin: auto;
-  border: 3px solid #111;
+  padding: 20px;
+  border: 1px solid #333;
 }
 
 div#user_settings {
