@@ -1,6 +1,8 @@
-const admin = require('firebase-admin');
-const index = require('./index');
-const database = index.getdb();
+// user.js
+
+const {
+  database,
+} = require('./admin');
 
 exports.list = function(req, res) {
   var users = [];

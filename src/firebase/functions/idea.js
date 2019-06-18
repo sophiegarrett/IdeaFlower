@@ -1,6 +1,8 @@
-const admin = require('firebase-admin');
-const index = require('./index');
-const database = index.getdb();
+// idea.js
+
+const {
+  database,
+} = require('./admin');
 
 exports.list = function(req, res) {
   var ideas = [];
