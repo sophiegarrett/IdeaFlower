@@ -12,7 +12,7 @@
     <div class="dropdown">
       <button class="dropbtn" id="user_dropbtn"></button>
       <div class="dropdown-content" id="user_dropdown">
-        <a href="#">My Profile</a>
+        <a id="profile_link" href="#">My Profile</a>
         <a href="/logout">Log Out</a>
       </div>
     </div>
@@ -40,8 +40,9 @@ window.onclick = function(e) {
 // Button controls
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    document.getElementById("user_dropbtn").innerHTML = "Welcome, " + user.displayName;
+    document.getElementById("user_dropbtn").innerHTML = "Welcome, " + user.displayName + " <i class='fa fa-caret-down'></i>";
     document.getElementById("user_dropbtn").setAttribute('onclick', 'showUserDropdown()');
+    document.getElementById("profile_link").href = "/user/" + user.uid;
   } else {
     document.getElementById("user_dropbtn").innerHTML = "Log In";
     document.getElementById("user_dropbtn").setAttribute('onclick', "location.href='/login';");
