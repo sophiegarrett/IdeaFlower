@@ -37,7 +37,7 @@ validate = function() {
       alert("Error: Display names must be no more than 25 characters long.");
     }
     else {
-      alert("New name = " + new_displayName);
+      updateProfile(new_displayName);
     }
   }
   else {
@@ -59,6 +59,19 @@ isInvalid = function(input) {
   else {
     return false;
   }
+}
+
+// Function that updates a user's profile information in Firebase.
+updateProfile = function(new_displayName) {
+  var user = firebase.auth().currentUser;
+
+  user.updateProfile({
+    displayName: new_displayName
+  }).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error occurred.
+  });
 }
 
 // Display correct div and hide the loader
