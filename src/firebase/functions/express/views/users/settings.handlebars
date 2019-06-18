@@ -1,1 +1,26 @@
 <h1>{{> page/title}}</h1>
+
+<div id="loader">Loading...</div>
+
+<div id="user_settings_error">
+  Click <a href="/login">here</a> to log in.
+</div>
+
+<div id="user_settings">
+  You are logged in!
+</div>
+
+<script>
+
+// Display correct div and hide the loader
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('user_settings').style.display = 'block';
+  } else {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('user_settings_error').style.display = 'block';
+  }
+});
+
+</script>

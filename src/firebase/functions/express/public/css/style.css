@@ -1,6 +1,9 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+div {
+  display: block;
+}
 h1 {
   font-size: 40px;
   text-align: center;
@@ -20,6 +23,14 @@ p {
   color: #000000;
   background-color: #ffffff;
 }
-p.centered {
+.centered {
   text-align: center;
+}
+
+div#user_settings {
+  display: none;
+}
+
+div#user_settings_error {
+  display: none;
 }
