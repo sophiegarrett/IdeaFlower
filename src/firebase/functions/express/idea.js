@@ -39,7 +39,7 @@ exports.view = function(req, res) {
 };
 
 exports.submit = function(req, res) {
-  res.render('submit', { title: 'Submit an Idea' });
+  res.render('ideas/submit', { title: 'Submit an Idea' });
 }
 
 exports.update = function(req, res){
