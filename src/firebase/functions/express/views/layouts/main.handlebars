@@ -21,6 +21,8 @@
       if (user) {
         document.getElementById("nav_login").href = "/logout";
         document.getElementById("nav_login").innerHTML = "Log Out";
+        document.getElementById("nav_user").href = "user/" + user.uid;
+        document.getElementById("nav_user").innerHTML = "Welcome, " + user.displayName;
       } else {
         document.getElementById("nav_login").href = "/login";
         document.getElementById("nav_login").innerHTML = "Log In";
