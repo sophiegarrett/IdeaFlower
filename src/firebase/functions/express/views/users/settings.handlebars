@@ -25,14 +25,23 @@
 // Function that runs when the form is submitted
 validate = function() {
   var new_displayName = document.getElementById("new_displayName").value;
-  if (isEmpty(new_displayName)) {
-    alert("String is empty!");
-  }
-  else if (isInvalid(new_displayName)) {
-    alert("String contains invalid characters!");
+
+  if (!(isEmpty(new_displayName))) {
+    if (isInvalid(new_displayName)) {
+      alert("Error: Display names can only contain letters, numbers, and underscores.");
+    }
+    else if (new_displayName.length < 3) {
+      alert("Error: Display names must be at least three characters long.");
+    }
+    else if (new_displayName.length > 25) {
+      alert("Error: Display names must be no more than 25 characters long.");
+    }
+    else {
+      alert("New name = " + new_displayName);
+    }
   }
   else {
-    alert("New name = " + new_displayName);
+    alert("String is empty!");
   }
 }
 
