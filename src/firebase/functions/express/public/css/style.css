@@ -39,3 +39,7 @@ div#user_settings {
 div#user_settings_error {
   display: none;
 }
+
+div#user_settings_submitted {
+  display: none;
+}

@@ -18,6 +18,10 @@
     </form>
   </div>
 
+  <div id="user_settings_submitted">
+    Settings updated successfully. Refresh the page to see your changes.
+  </div>
+
 </div>
 
 <script>
@@ -40,9 +44,10 @@ validate = function() {
       updateProfile(new_displayName);
     }
   }
-  else {
-    alert("String is empty!");
-  }
+
+  // Hide the settings form and tell the user that their settings have been submitted.
+  document.getElementById('user_settings').style.display = 'none';
+  document.getElementById('user_settings_submitted').style.display = 'block';
 }
 
 // Function that checks if a field is empty.
