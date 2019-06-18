@@ -1,5 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
 }
 div {
   display: block;
@@ -9,22 +10,25 @@ h1 {
   text-align: center;
   text-decoration: underline;
   color: #000000;
-  background-color: #ffffff;
 }
 h2 {
   font-size: 20px;
   text-align: center;
   color: #000000;
-  background-color: #ffffff;
 }
 p {
   font-size: large;
   text-align: left;
   color: #000000;
-  background-color: #ffffff;
 }
 .centered {
   text-align: center;
+}
+
+div#user_settings_container {
+  max-width: 500px;
+  margin: auto;
+  border: 3px solid #111;
 }
 
 div#user_settings {
