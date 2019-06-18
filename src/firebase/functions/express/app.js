@@ -43,6 +43,7 @@ app.get('/privacy', site.privacy);
 
 // User
 app.get('/user/:id', user.view);
+app.get('/settings', user.settings);
 
 // Idea
 app.get('/ideas', idea.list);

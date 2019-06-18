@@ -20,6 +20,10 @@ exports.view = function(req, res) {
     });
 };
 
+exports.settings = function(req, res) {
+  res.render('users/settings', { title: 'User Settings' });
+}
+
 exports.update = function(req, res){
   // Normally you would handle all kinds of
   // validation and save back to the db
