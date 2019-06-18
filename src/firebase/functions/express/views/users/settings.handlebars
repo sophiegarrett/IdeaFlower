@@ -9,12 +9,23 @@
   </div>
 
   <div id="user_settings">
-    You are logged in!
+    Here, you can edit your user settings. Leave a field blank to leave its value as-is. When you're done, click "Submit".
+    <form onsubmit="return false;" method="post" name="user_settings_form">
+      <br>
+      Display Name: <input type="text" name="new_displayName" id="new_displayName" />
+      <br><br>
+      <input type="submit" name="submit" onclick="validate()" />
+    </form>
   </div>
 
 </div>
 
 <script>
+
+validate = function() {
+  var new_displayName = document.getElementById("new_displayName").value;
+  alert("New name = " + new_displayName);
+}
 
 // Display correct div and hide the loader
 firebase.auth().onAuthStateChanged(function(user) {
