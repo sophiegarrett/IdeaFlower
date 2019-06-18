@@ -3,7 +3,7 @@ exports.index = function(req, res) {
 }
 
 exports.login = function(req, res) {
-  res.render('login', {layout: false, title: 'Log In'});
+  res.render('login', { title: 'Log In' });
 }
 
 exports.tos = function(req, res) {
