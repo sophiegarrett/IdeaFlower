@@ -1,5 +1,6 @@
 // user.js
 
+const admin = require('firebase-admin');
 const {
   database,
 } = require('../admin');
@@ -22,19 +23,16 @@ exports.list = function(req, res) {
 
 exports.view = function(req, res) {
   var id = req.params.id;
-  var userdoc = database.collection('users').doc(id).get()
-    .then(doc => {
-      if (!doc.exists) {
-        console.log('Cannot find user ' + id);
-        res.render('404', { title: 'Page Not Found' });
-      } else {
-        var user = {id: doc.id, name: doc.data().name};
-        res.render('users/view', { title: 'Viewing user ' + user.name, user: user });
-      }
+  admin.auth().getUser(id)
+    .then(function(userRecord) {
+      // See the UserRecord reference doc for the contents of userRecord.
+      var user = {id: userRecord.uid, name: userRecord.displayName};
+      res.render('users/view', { title: 'Viewing user ' + user.name, user: user });
       return null;
     })
-    .catch((err) => {
-      console.log('Error getting documents', err);
+    .catch(function(error) {
+      console.log('Error fetching user data:', error);
+      res.render('404', { title: 'Page Not Found' });
     });
 };
 
