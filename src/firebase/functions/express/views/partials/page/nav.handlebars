@@ -11,5 +11,33 @@
   <div class="nav_userinfo">
     <a id="nav_user" href="javascript:void(0);"></a>
     <a id="nav_login" href="javascript:void(0);"></a>
+
+    <div class="dropdown">
+      <button class="dropbtn" id="user_dropbtn" onclick="showUserDropdown()"></button>
+      <div class="dropdown-content" id="user_dropdown">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div>
+
   </div>
 </nav>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function showUserDropdown() {
+  document.getElementById("user_dropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("user_dropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>

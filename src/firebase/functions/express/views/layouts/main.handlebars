@@ -6,6 +6,7 @@
   <title>{{> page/title}}</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <link rel="stylesheet" href="/css/nav.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Firebase initialization scripts -->
   <script src="/__/firebase/6.1.1/firebase-app.js"></script>
@@ -23,9 +24,11 @@
         document.getElementById("nav_login").innerHTML = "Log Out";
         document.getElementById("nav_user").href = "user/" + user.uid;
         document.getElementById("nav_user").innerHTML = "Welcome, " + user.displayName;
+        document.getElementById("user_dropbtn").innerHTML = "Welcome, " + user.displayName;
       } else {
         document.getElementById("nav_login").href = "/login";
         document.getElementById("nav_login").innerHTML = "Log In";
+        document.getElementById("user_dropbtn").innerHTML = "Log In";
       }
     });
   </script>
