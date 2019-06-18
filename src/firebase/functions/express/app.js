@@ -47,6 +47,7 @@ app.get('/user/:id', user.view);
 // Idea
 app.get('/ideas', idea.list);
 app.get('/idea/:id', idea.view);
+app.get('/submit', idea.submit);
 
 // 404
 app.get('*', site.error404);

@@ -38,6 +38,10 @@ exports.view = function(req, res) {
     });
 };
 
+exports.submit = function(req, res) {
+  res.render('submit', { title: 'Submit an Idea' });
+}
+
 exports.update = function(req, res){
   // Normally you would handle all kinds of
   // validation and save back to the db
