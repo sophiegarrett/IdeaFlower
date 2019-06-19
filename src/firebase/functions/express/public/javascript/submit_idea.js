@@ -45,3 +45,23 @@ isValidDescription = function(input) {
     return "valid";
   }
 }
+
+// Function that adds a new idea to the database.
+submitIdea = function(title, description) {
+  var database = firebase.firestore();
+  var user = firebase.auth().currentUser;
+  var timestamp = firebase.firestore.FieldValue.serverTimestamp();
+
+  database.collection("ideas").add({
+    title: title,
+    description: description,
+    uid: user.uid,
+    timestamp: timestamp
+  })
+  .then(function() {
+    return null;
+  })
+  .catch(function(error) {
+    console.error("Error adding document: ", error);
+  });
+}

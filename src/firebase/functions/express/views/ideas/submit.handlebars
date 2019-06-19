@@ -34,23 +34,20 @@ validate = function() {
 
   // Check if the title is valid
   var error_code = isValidTitle(title);
-  if (error_code === "valid") {
-    alert("Title is " + error_code);
-  }
-  else {
+  if (error_code != "valid") {
     alert(error_code);
     return;
   }
 
   // Check if the description is valid
   var error_code = isValidDescription(description);
-  if (error_code === "valid") {
-    alert("Description is " + error_code);
-  }
-  else {
+  if (error_code != "valid") {
     alert(error_code);
     return;
   }
+
+  // Submit idea
+  submitIdea(title, description);
 }
 
 // Display correct div and hide the loader
