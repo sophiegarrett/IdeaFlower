@@ -4,7 +4,9 @@
 
 <div id="idealist_container" class="container large">
 
-  <table id="idealist" class="idealist">
+  <div id="loader" class="centered">Loading...</div>
+
+  <table id="idealist" class="idealist hidden">
     <tr>
       <th>Title</th>
       <th>Submitted By</th>
@@ -19,4 +21,11 @@
       </tr>
     {{/each}}
   </table>
+
 </div>
+
+<script>
+// Display idea list and hide the loader
+document.getElementById('loader').classList.add("hidden");
+document.getElementById('idealist').classList.remove("hidden");
+</script>
