@@ -18,6 +18,7 @@ listAllIdeas = function() {
   var table = document.getElementById("idealist");
 
   database.collection("ideas")
+    .orderBy("timestamp", "desc")
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -44,7 +45,8 @@ listUserIdeas = function(uid) {
   var database = firebase.firestore();
   var table = document.getElementById("idealist");
 
-  db.collection("ideas").where("uid", "==", uid)
+  database.collection("ideas").where("uid", "==", uid)
+    .orderBy("timestamp", "desc")
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
