@@ -1,7 +1,7 @@
 <h1>{{user.name}}</h1>
 
 <div id="user_container" class="container large">
-
+  <h2>{{user.name}}'s Ideas</h2>
   <div id="loader" class="centered">Loading...</div>
 
   <table id="idealist" class="idealist hidden">
@@ -17,6 +17,7 @@
 <script src="/javascript/list_ideas.js"></script>
 
 <script>
+  var uid = "{{user.id}}";
   // List all ideas submitted by this user
-  listUserIdeas({{user.id}});
+  listUserIdeas(uid);
 </script>

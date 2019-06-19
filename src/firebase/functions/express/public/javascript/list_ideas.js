@@ -45,7 +45,8 @@ listUserIdeas = function(uid) {
   var database = firebase.firestore();
   var table = document.getElementById("idealist");
 
-  database.collection("ideas").where("uid", "==", uid)
+  database.collection("ideas")
+    .where("uid", "==", uid)
     .orderBy("timestamp", "desc")
     .get()
     .then(function(querySnapshot) {
