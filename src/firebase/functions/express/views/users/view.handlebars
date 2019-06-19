@@ -1,1 +1,22 @@
 <h1>{{user.name}}</h1>
+
+<div id="user_container" class="container large">
+
+  <div id="loader" class="centered">Loading...</div>
+
+  <table id="idealist" class="idealist hidden">
+    <tr>
+      <th>Title</th>
+      <th>Date Submitted</th>
+    </tr>
+  </table>
+
+</div>
+
+<!-- External idea list functions-->
+<script src="/javascript/list_ideas.js"></script>
+
+<script>
+  // List all ideas submitted by this user
+  listUserIdeas({{user.id}});
+</script>
