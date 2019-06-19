@@ -21,6 +21,10 @@
     </form>
   </div>
 
+  <div id="submit_redirect" class="centered hidden">
+    Submitting idea...
+  </div>
+
 </div>
 
 <!-- External submit functions-->
@@ -45,6 +49,10 @@ validate = function() {
     alert(error_code);
     return;
   }
+
+  // Hide the submission form and show redirect text
+  document.getElementById('submit').classList.add("hidden");
+  document.getElementById('submit_redirect').classList.remove("hidden");
 
   // Submit idea
   submitIdea(title, description);

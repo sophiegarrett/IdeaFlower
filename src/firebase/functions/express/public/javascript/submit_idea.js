@@ -58,10 +58,13 @@ submitIdea = function(title, description) {
     uid: user.uid,
     timestamp: timestamp
   })
-  .then(function() {
+  .then(function(docRef) {
+    window.location.href = "/idea/" + docRef.id;
     return null;
   })
   .catch(function(error) {
     console.error("Error adding document: ", error);
+    // eslint-disable-next-line no-alert
+    alert("An error occurred during idea submission. Please refresh the page and try again.");
   });
 }
