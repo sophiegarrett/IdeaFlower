@@ -25,21 +25,13 @@ p {
   text-align: center;
 }
 
-div#user_settings_container {
+.hidden {
+  display: none;
+}
+
+div.container {
   max-width: 500px;
   margin: auto;
   padding: 20px;
   border: 1px solid #333;
-}
-
-div#user_settings {
-  display: none;
-}
-
-div#user_settings_error {
-  display: none;
-}
-
-div#user_settings_submitted {
-  display: none;
 }

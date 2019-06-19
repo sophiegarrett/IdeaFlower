@@ -1,14 +1,14 @@
 <h1>{{> page/title}}</h1>
 
-<div id="user_settings_container">
+<div id="user_settings_container" class="container">
 
   <div id="loader" class="centered">Loading...</div>
 
-  <div id="user_settings_error" class="centered">
+  <div id="user_settings_error" class="centered hidden">
     Click <a href="/login">here</a> to log in.
   </div>
 
-  <div id="user_settings">
+  <div id="user_settings" class="hidden">
     Here, you can edit your user settings. Leave a field blank to leave its value as-is. When you're done, click "Submit".
     <form onsubmit="return false;" method="post" name="user_settings_form">
       <br>
@@ -18,7 +18,7 @@
     </form>
   </div>
 
-  <div id="user_settings_submitted">
+  <div id="user_settings_submitted" class="centered hidden">
     Settings updated successfully. Refresh the page to see your changes.
   </div>
 
@@ -45,18 +45,18 @@ validate = function() {
   }
 
   // Hide the settings form and tell the user that their settings have been submitted.
-  document.getElementById('user_settings').style.display = 'none';
-  document.getElementById('user_settings_submitted').style.display = 'block';
+  document.getElementById('user_settings').classList.add("hidden");
+  document.getElementById('user_settings_submitted').classList.remove("hidden");
 }
 
 // Display correct div and hide the loader
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('user_settings').style.display = 'block';
+    document.getElementById('loader').classList.add("hidden");
+    document.getElementById('user_settings').classList.remove("hidden");
   } else {
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('user_settings_error').style.display = 'block';
+    document.getElementById('loader').classList.add("hidden");
+    document.getElementById('user_settings_error').classList.remove("hidden");
   }
 });
 </script>

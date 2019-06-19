@@ -1,1 +1,28 @@
 <h1>Welcome to IdeaFlower!</h1>
+
+<div id="welcome_container" class="container">
+
+  <div id="loader" class="centered">Loading...</div>
+
+  <div id="welcome_error" class="centered hidden">
+    Click <a href="/login">here</a> to log in.
+  </div>
+
+  <div id="welcome" class="centered hidden">
+    Welcome to IdeaFlower!
+  </div>
+
+</div>
+
+<script>
+// Display correct div and hide the loader
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    document.getElementById('loader').classList.add("hidden");
+    document.getElementById('welcome').classList.remove("hidden");
+  } else {
+    document.getElementById('loader').classList.add("hidden");
+    document.getElementById('welcome_error').classList.remove("hidden");
+  }
+});
+</script>
