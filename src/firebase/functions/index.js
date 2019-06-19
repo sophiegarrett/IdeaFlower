@@ -2,9 +2,9 @@
 
 const functions = require('firebase-functions');
 const app = require('./express/app');
-const createProfile = require('./createProfile');
+const createUser = require('./createUser');
 
 module.exports = {
   'app': functions.https.onRequest(app),
-  authOnCreate: functions.auth.user().onCreate(createProfile),
+  authOnCreate: functions.auth.user().onCreate(createUser),
 };
