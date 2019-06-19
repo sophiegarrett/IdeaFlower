@@ -5,19 +5,7 @@ const {
 } = require('../admin');
 
 exports.list = function(req, res) {
-  var ideas = [];
-  database.collection('ideas').get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      var idea = {id: doc.id, title: doc.data().title, uid: doc.data().uid, timestamp: doc.data().timestamp};
-      ideas.push(idea);
-    });
-    res.render('ideas', { title: 'Ideas', ideas: ideas });
-    return null;
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err);
-  });
+  res.render('ideas', { title: 'Ideas' });
 };
 
 exports.view = function(req, res) {
