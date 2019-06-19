@@ -2,8 +2,10 @@
 
 <script>document.getElementById("nav_ideas").classList.add('active');</script>
 
-<ul class="idealist">
-  {{#each ideas}}
-    <li><a href="/idea/{{this.id}}">{{this.title}}</a></li>
-  {{/each}}
-</ul>
+<div id="idealist_container" class="container large">
+  <ul class="idealist">
+    {{#each ideas}}
+      <li><a href="/idea/{{this.id}}">{{this.title}}</a></li>
+    {{/each}}
+  </ul>
+</div>
