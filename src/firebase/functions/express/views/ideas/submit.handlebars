@@ -10,7 +10,13 @@
   </div>
 
   <div id="submit" class="hidden">
-    Submit an idea:
+    Use this form to submit a new idea. Please note that ideas cannot be edited after they are submitted (though this feature may be added in the future).
+    <form onsubmit="return false;" method="post" name="submit_idea_form">
+      <br>
+      Title: <input type="text" name="idea_title" id="idea_title" />
+      <br><br>
+      <input type="submit" name="submit" onclick="validate()" />
+    </form>
   </div>
 
 </div>
@@ -19,6 +25,11 @@
 <script src="/javascript/submit_idea.js"></script>
 
 <script>
+// Function that runs when the form is submitted
+validate = function() {
+  var title = document.getElementById("idea_title").value;
+}
+
 // Display correct div and hide the loader
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
