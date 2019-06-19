@@ -2,9 +2,14 @@
 
 // Function that converts a Firebase timestamp to a date string.
 getDate = function(timestamp) {
-  var date = timestamp.toDate();
-  var dateString = new Intl.DateTimeFormat('en-US').format(date);
-  return dateString;
+  if (timestamp != null) {
+    var date = timestamp.toDate();
+    var dateString = new Intl.DateTimeFormat('en-US').format(date);
+    return dateString;
+  }
+  else {
+    return "undefined";
+  }
 }
 
 // Function that lists all ideas in the database.
