@@ -11,12 +11,10 @@ listAllIdeas = function() {
         querySnapshot.forEach(function(doc) {
           var row = table.insertRow();
           var title_cell = row.insertCell(0);
-          var user_cell = row.insertCell(1);
-          var date_cell = row.insertCell(2);
+          var date_cell = row.insertCell(1);
 
           title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
-          user_cell.innerHTML = doc.data().uid;
-          date_cell.innerHTML = doc.data().timestamp;
+          date_cell.innerHTML = doc.data().timestamp.toDate();
         });
 
         // Display idea list and hide the loader
@@ -40,12 +38,10 @@ listUserIdeas = function(uid) {
         querySnapshot.forEach(function(doc) {
           var row = table.insertRow();
           var title_cell = row.insertCell(0);
-          var user_cell = row.insertCell(1);
-          var date_cell = row.insertCell(2);
+          var date_cell = row.insertCell(1);
 
           title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
-          user_cell.innerHTML = doc.data().uid;
-          date_cell.innerHTML = doc.data().timestamp;
+          date_cell.innerHTML = doc.data().timestamp.toDate();
         });
 
         // Display idea list and hide the loader
