@@ -28,6 +28,17 @@
 // Function that runs when the form is submitted
 validate = function() {
   var title = document.getElementById("idea_title").value;
+
+  // Check if the title is valid
+  var error_code = isValidTitle(title);
+  if (error_code === "valid") {
+    alert(error_code);
+    return;
+  }
+  else {
+    alert(error_code);
+    return;
+  }
 }
 
 // Display correct div and hide the loader
