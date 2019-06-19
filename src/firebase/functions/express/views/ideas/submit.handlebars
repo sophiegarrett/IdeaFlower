@@ -36,7 +36,16 @@ validate = function() {
   var error_code = isValidTitle(title);
   if (error_code === "valid") {
     alert("Title is " + error_code);
+  }
+  else {
+    alert(error_code);
     return;
+  }
+
+  // Check if the description is valid
+  var error_code = isValidDescription(description);
+  if (error_code === "valid") {
+    alert("Description is " + error_code);
   }
   else {
     alert(error_code);
