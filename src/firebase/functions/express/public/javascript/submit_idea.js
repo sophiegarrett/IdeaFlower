@@ -27,12 +27,13 @@ isValidTitle = function(input) {
 
 // Function that checks if a description is valid.
 isValidDescription = function(input) {
-  var regexp = /^[a-zA-Z0-9 ]+$/;
+  // eslint-disable-next-line no-control-regex
+  var regexp = /^[\x09-\x0A\x20-\x3B\x3D\x3F-\x7E]+$/;
   if (isEmpty(input)) {
     return "Error: Please add a description to your submission.";
   }
   else if (input.search(regexp) === -1) {
-    return "Error: Idea descriptions can only contain letters, numbers, and spaces.";
+    return "Error: Idea description contains invalid characters. Note that < and > are not allowed.";
   }
   else if (input.length < 10) {
     return "Error: Idea descriptions must be at least ten characters long.";
