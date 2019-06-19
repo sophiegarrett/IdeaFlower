@@ -1,3 +1,29 @@
 <h1>{{> page/title}}</h1>
-
 <script>document.getElementById("nav_ideas").classList.add('active');</script>
+
+<div id="submit_container" class="container large">
+
+  <div id="loader" class="centered">Loading...</div>
+
+  <div id="submit_error" class="centered hidden">
+    You must be logged in to submit an idea. Click <a href="/login">here</a> to log in.
+  </div>
+
+  <div id="submit" class="hidden">
+    Submit an idea:
+  </div>
+
+</div>
+
+<script>
+// Display correct div and hide the loader
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    document.getElementById('loader').classList.add("hidden");
+    document.getElementById('submit').classList.remove("hidden");
+  } else {
+    document.getElementById('loader').classList.add("hidden");
+    document.getElementById('submit_error').classList.remove("hidden");
+  }
+});
+</script>

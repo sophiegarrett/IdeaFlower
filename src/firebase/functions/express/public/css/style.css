@@ -35,3 +35,7 @@ div.container {
   padding: 20px;
   border: 1px solid #333;
 }
+
+div.container.large {
+  max-width: 700px;
+}
