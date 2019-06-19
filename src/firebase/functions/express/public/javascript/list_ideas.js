@@ -18,6 +18,10 @@ listAllIdeas = function() {
           user_cell.innerHTML = doc.data().uid;
           date_cell.innerHTML = doc.data().timestamp;
         });
+
+        // Display idea list and hide the loader
+        document.getElementById('loader').classList.add("hidden");
+        document.getElementById('idealist').classList.remove("hidden");
         return null;
     })
     .catch(function(error) {
@@ -43,6 +47,10 @@ listUserIdeas = function(uid) {
           user_cell.innerHTML = doc.data().uid;
           date_cell.innerHTML = doc.data().timestamp;
         });
+
+        // Display idea list and hide the loader
+        document.getElementById('loader').classList.add("hidden");
+        document.getElementById('idealist').classList.remove("hidden");
         return null;
     })
     .catch(function(error) {
