@@ -1,5 +1,12 @@
 // list_ideas.js
 
+// Function that converts a Firebase timestamp to a date string.
+getDate = function(timestamp) {
+  var date = timestamp.toDate();
+  var dateString = new Intl.DateTimeFormat('en-US').format(date);
+  return dateString;
+}
+
 // Function that lists all ideas in the database.
 listAllIdeas = function() {
   var database = firebase.firestore();
@@ -14,7 +21,7 @@ listAllIdeas = function() {
           var date_cell = row.insertCell(1);
 
           title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
-          date_cell.innerHTML = doc.data().timestamp.toDate();
+          date_cell.innerHTML = getDate(doc.data().timestamp);
         });
 
         // Display idea list and hide the loader
@@ -41,7 +48,7 @@ listUserIdeas = function(uid) {
           var date_cell = row.insertCell(1);
 
           title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
-          date_cell.innerHTML = doc.data().timestamp.toDate();
+          date_cell.innerHTML = getDate(doc.data().timestamp);
         });
 
         // Display idea list and hide the loader
