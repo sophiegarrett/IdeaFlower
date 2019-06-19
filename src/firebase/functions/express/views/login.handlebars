@@ -17,10 +17,17 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+      var isNewUser = authResult.additionalUserInfo.isNewUser;
+      if (isNewUser) {
+        window.location.href = '/welcome';
+      }
+      else {
+        window.location.href = '/';
+      }
       // User successfully signed in.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
-      return true;
+      return false;
     },
     uiShown: function() {
       // The widget is rendered.
@@ -32,8 +39,10 @@ var uiConfig = {
   signInFlow: 'popup',
   signInSuccessUrl: '/',
   signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    {
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      requireDisplayName: false
+    },
     firebase.auth.GoogleAuthProvider.PROVIDER_ID
   ],
   // Terms of service url.

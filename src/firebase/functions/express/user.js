@@ -24,6 +24,10 @@ exports.settings = function(req, res) {
   res.render('users/settings', { title: 'User Settings' });
 }
 
+exports.welcome = function(req, res) {
+  res.render('users/welcome', { title: 'Welcome' });
+}
+
 exports.update = function(req, res){
   // Normally you would handle all kinds of
   // validation and save back to the db
