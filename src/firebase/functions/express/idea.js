@@ -9,7 +9,7 @@ exports.list = function(req, res) {
   database.collection('ideas').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
-      var idea = {id: doc.id, title: doc.data().title};
+      var idea = {id: doc.id, title: doc.data().title, uid: doc.data().uid, timestamp: doc.data().timestamp};
       ideas.push(idea);
     });
     res.render('ideas', { title: 'Ideas', ideas: ideas });

@@ -3,9 +3,20 @@
 <script>document.getElementById("nav_ideas").classList.add('active');</script>
 
 <div id="idealist_container" class="container large">
-  <ul class="idealist">
+
+  <table id="idealist">
+    <tr>
+      <th>Title</th>
+      <th>Submitted By</th>
+      <th>Date</th>
+    </tr>
+
     {{#each ideas}}
-      <li><a href="/idea/{{this.id}}">{{this.title}}</a></li>
+      <tr>
+        <td><a href="/idea/{{this.id}}">{{this.title}}</a></td>
+        <td>{{this.uid}}</td>
+        <td>{{this.timestamp}}</td>
+      </tr>
     {{/each}}
-  </ul>
+  </table>
 </div>
