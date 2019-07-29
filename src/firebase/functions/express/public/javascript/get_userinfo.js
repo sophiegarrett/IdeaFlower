@@ -15,18 +15,10 @@ getUserData = function(uid) {
   }).catch(function(error) {
     console.log("Error getting document:", error);
   });
-  }
 }
 
 // Function that returns a user's display name.
 getDisplayName = function(uid) {
-  var userData = getUserData(uid);
-
-  if (userData.displayName !== null) {
-    return userData.displayName;
-  }
-  else {
-    console.log("Error getting display name.");
-    return null;
-  }
+  console.log(getUserData(uid));
+  return "hello";
 }
