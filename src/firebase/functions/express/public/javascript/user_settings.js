@@ -36,7 +36,7 @@ updateProfile = function(displayName) {
   });
 
   database.collection('users')
-    .doc(user)
+    .doc(user.uid)
     .set({ displayName }, { merge: true })
     .catch(console.error);
 }
