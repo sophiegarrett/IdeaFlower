@@ -17,6 +17,5 @@ async function getUserData(uid) {
 // Function that returns a user's display name.
 async function getDisplayName(uid) {
   const userData = await getUserData(uid);
-  console.log(userData.displayName);
   return userData.displayName;
 }

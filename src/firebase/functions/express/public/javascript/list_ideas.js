@@ -13,34 +13,28 @@ getDate = function(timestamp) {
 }
 
 // Function that lists all ideas in the database.
-listAllIdeas = function() {
+async function listAllIdeas() {
   var database = firebase.firestore();
   var table = document.getElementById("idealist");
+  var dbRef = database.collection("ideas").orderBy("timestamp", "desc");
 
-  database.collection("ideas")
-    .orderBy("timestamp", "desc")
-    .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          var row = table.insertRow();
-          var title_cell = row.insertCell(0);
-          var user_cell = row.insertCell(1);
-          var date_cell = row.insertCell(2);
+  var querySnapshot = await dbRef.get();
+  querySnapshot.forEach(async function(doc) {
+    var row = table.insertRow();
+    var title_cell = row.insertCell(0);
+    var user_cell = row.insertCell(1);
+    var date_cell = row.insertCell(2);
 
-          title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
-          console.log(getDisplayName(doc.data().uid));
-          user_cell.innerHTML = "<a href='/user/" + doc.data().uid + "'>" + getDisplayName(doc.data().uid);
-          date_cell.innerHTML = getDate(doc.data().timestamp);
-        });
+    title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
+    const displayName = await getDisplayName(doc.data().uid);
+    user_cell.innerHTML = "<a href='/user/" + doc.data().uid + "'>" + displayName;
+    date_cell.innerHTML = getDate(doc.data().timestamp);
+  });
 
-        // Display idea list and hide the loader
-        document.getElementById('loader').classList.add("hidden");
-        document.getElementById('idealist').classList.remove("hidden");
-        return null;
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
+  // Display idea list and hide the loader
+  document.getElementById('loader').classList.add("hidden");
+  document.getElementById('idealist').classList.remove("hidden");
+  return null;
 }
 
 // Function that lists all ideas submitted by a specific user.
