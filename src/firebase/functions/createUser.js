@@ -2,8 +2,10 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const database = require('./admin');
 
 // Sets a newly-created user's displayName to a randomly-generated string.
+// Adds a new user record to the database.
 const createUser = (userRecord, context) => {
   const { displayName, uid } = userRecord;
   var new_name = newID();
@@ -11,6 +13,12 @@ const createUser = (userRecord, context) => {
   admin.auth().updateUser(uid, {
     displayName: new_name
   });
+
+  return database
+    .collection('users')
+    .doc(uid)
+    .set({ displayName })
+    .catch(console.error);
 };
 
 const newID = function() {
