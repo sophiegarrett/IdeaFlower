@@ -24,9 +24,11 @@ listAllIdeas = function() {
         querySnapshot.forEach(function(doc) {
           var row = table.insertRow();
           var title_cell = row.insertCell(0);
-          var date_cell = row.insertCell(1);
+          var user_cell = row.insertCell(1);
+          var date_cell = row.insertCell(2);
 
           title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
+          user_cell.innerHTML = doc.data().uid;
           date_cell.innerHTML = getDate(doc.data().timestamp);
         });
 

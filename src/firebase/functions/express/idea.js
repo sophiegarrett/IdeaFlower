@@ -16,7 +16,7 @@ exports.view = function(req, res) {
         console.log('Cannot find idea ' + id);
         res.render('404', { title: 'Page Not Found' });
       } else {
-        var idea = {id: doc.id, title: doc.data().title, description: doc.data().description};
+        var idea = {id: doc.id, title: doc.data().title, description: doc.data().description, uid: doc.data().uid};
         res.render('ideas/view', { title: idea.title, idea: idea });
       }
       return null;
