@@ -1,24 +1,22 @@
 // get_userinfo.js
 
 // Function that fetches a user's data from the database.
-getUserData = function(uid) {
+async function getUserData(uid) {
   var database = firebase.firestore();
   var docRef = database.collection('users').doc(uid);
 
-  docRef.get().then(function(doc) {
-    if (doc.exists) {
-      return doc.data();
-    } else {
-      console.log("User does not exist.");
-      return null;
-    }
-  }).catch(function(error) {
-    console.log("Error getting document:", error);
-  });
+  var doc = await docRef.get();
+  if (doc.exists) {
+    return doc.data();
+  } else {
+    console.log("User does not exist.");
+    return null;
+  }
 }
 
 // Function that returns a user's display name.
-getDisplayName = function(uid) {
-  console.log(getUserData(uid));
-  return "hello";
+async function getDisplayName(uid) {
+  const userData = await getUserData(uid);
+  console.log(userData.displayName);
+  return userData.displayName;
 }
