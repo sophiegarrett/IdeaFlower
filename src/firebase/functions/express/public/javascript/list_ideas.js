@@ -28,7 +28,7 @@ listAllIdeas = function() {
           var date_cell = row.insertCell(2);
 
           title_cell.innerHTML = "<a href='/idea/" + doc.id + "'>" + doc.data().title + "</a>";
-          user_cell.innerHTML = doc.data().uid;
+          user_cell.innerHTML = "<a href='/user/" + doc.data().uid + "'>" + getDisplayName(doc.data().uid);
           date_cell.innerHTML = getDate(doc.data().timestamp);
         });
 
