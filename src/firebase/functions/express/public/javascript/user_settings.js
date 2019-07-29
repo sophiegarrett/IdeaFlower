@@ -23,14 +23,20 @@ isValidDisplayName = function(input) {
 }
 
 // Function that updates a user's profile information in Firebase.
-updateProfile = function(new_displayName) {
+updateProfile = function(displayName) {
+  var database = firebase.firestore();
   var user = firebase.auth().currentUser;
 
   user.updateProfile({
-    displayName: new_displayName
+    displayName: displayName
   }).then(function() {
     return null;
   }).catch(function(error) {
     // An error occurred.
   });
+
+  database.collection('users')
+    .doc(user)
+    .set({ displayName }, { merge: true })
+    .catch(console.error);
 }
